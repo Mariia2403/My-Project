@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
     internal class Beads : Transport
     {
-        public override double Cost
+        public Beads()
         {
-            get
-            {
-                return 15;
-            }
+            Cost = 15;
+            MaxVolume = 20;
         }
 
-
-        public override double Volume
+        public override double CalculateTransportationCost(double weight, double volume)
         {
-            get
+            return (double)(weight * 0.5 + volume * 0.8);
+        }
+
+        public override bool CanHandleCondition(string condition)
+        {
+            if (condition == "Амортизація" || condition == "Охолодження")
             {
-                return 8;
+
+                return true;
+
             }
+            return false;
         }
     }
 }

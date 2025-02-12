@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WindowsFormsApp1
+﻿namespace WindowsFormsApp1
 {
     abstract class Transport
     {
-       public abstract double Cost { get; }
-       public abstract double Volume { get; }
+        public double Cost { get; protected set; }
+        public double MaxWeight { get; set; }
+        public double MaxVolume { get; protected set; }
+
+        public bool CanHandleVolume(double volume)
+        {
+            return volume <= MaxVolume;
+        }
+        public abstract bool CanHandleCondition(string condition);
+        
+        public abstract double CalculateTransportationCost(double weight, double volume);
 
     }
 }

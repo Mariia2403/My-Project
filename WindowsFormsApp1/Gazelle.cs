@@ -8,21 +8,26 @@ namespace WindowsFormsApp1
 {
     internal class Gazelle : Transport
     {
-        public override double Cost
+        public Gazelle()
         {
-            get
-            {
-                return 20;
-            }
+            Cost = 10;
+            MaxVolume = 20;
         }
 
-
-        public override double Volume
+        public override double CalculateTransportationCost(double weight, double volume)
         {
-            get
+            return (double)(weight * 1.5 + volume * 0.5);
+        }
+
+        public override bool CanHandleCondition(string condition)
+        {
+            if (condition == "Амортизація" || condition == "Охолодження")
             {
-                return 10;
+
+                return true;
+
             }
+            return false;
         }
     }
 }

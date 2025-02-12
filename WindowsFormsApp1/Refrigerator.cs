@@ -6,23 +6,25 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApp1
 {
-    internal class Refrigerator:Transport
+    internal class Refrigerator : Transport
     {
-        public override double Cost
+        public Refrigerator()
         {
-            get
-            {
-                return 25;
-            }
+            Cost = 30;
+            MaxVolume = 40;
         }
 
-
-        public override double Volume
+        public override double CalculateTransportationCost(double weight, double volume)
         {
-            get
-            {
-                return 12;
-            }
+            return (double)(weight * 1.5 + volume * 0.9);
+
+        }
+
+        public override bool CanHandleCondition(string condition)
+        {
+            if (condition == "Охолодження")
+                return true;
+            return false;
         }
     }
 }
